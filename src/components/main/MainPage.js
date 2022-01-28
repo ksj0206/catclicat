@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Canvas from './Canvas'
 
@@ -30,10 +30,12 @@ const MainPage = () => {
   }
 
   const init = async () => {
+    setCatImageList([])
     // [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
     const response = await getCatImageList()
 
     const data = response.map((item, idx) => {
+      new Image().src = item.url
       return { id: idx, src: item.url, isClicked: false }
     })
 
@@ -50,10 +52,6 @@ const MainPage = () => {
     init()
   }, [canvasSize])
 
-  useEffect(() => {
-    console.log('catImageList', catImageList)
-  }, [catImageList])
-
   return (
     <div
       style={{
@@ -67,9 +65,13 @@ const MainPage = () => {
       <div>
         <h1>고양이 눌러 볼 고양</h1>
       </div>
-      <div>
-        <select defaultValue={0} onChange={onCanvasSizeChange}>
-          <option value={0} disabled>
+      <div style={{ marginBottom: 16 }}>
+        <select
+          placeholder="dnononono"
+          defaultValue={0}
+          onChange={onCanvasSizeChange}
+        >
+          <option value={0} disabled style={{ display: 'none' }}>
             Puzzle Size 🍊
           </option>
           {[2, 4, 6].map((_) => (

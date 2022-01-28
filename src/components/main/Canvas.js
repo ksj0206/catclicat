@@ -1,5 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react'
-import axios from 'axios'
+import React from 'react'
 import BlockRow from './BlockRow'
 
 const Canvas = ({ canvasSize, catImageList, onBlockRemove }) => {
@@ -20,7 +19,6 @@ const Canvas = ({ canvasSize, catImageList, onBlockRemove }) => {
       >
         {catImageList.length > 0 &&
           catImageList.map((row, idx) => {
-            console.log('row', row)
             return (
               <BlockRow
                 size={canvasSize}

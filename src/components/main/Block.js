@@ -1,8 +1,14 @@
 import React from 'react'
-
+import '../../css/block.css'
 const Block = ({ size, block, onBlockRemove }) => {
   return (
-    <div style={{ height: '100%', width: `${100 / size}%` }}>
+    <div
+      className="block"
+      style={{
+        width: `${100 / size}%`,
+        cursor: block.isClicked ? 'unset' : 'pointer'
+      }}
+    >
       {!block.isClicked && (
         <img
           style={{ width: '100%', height: '100%' }}
